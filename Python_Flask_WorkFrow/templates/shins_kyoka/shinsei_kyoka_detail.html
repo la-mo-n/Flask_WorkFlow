@@ -1,0 +1,179 @@
+﻿{% extends 'menu_header.html' %}
+
+
+
+
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html lang="ja">
+<head>
+    <title>詳細</title>
+</head>
+<body>
+
+{% block body %}
+
+
+                    <form action="/shinsei_kyoka_detail" method="post">
+                    {% for Shins in shinseistr %}
+                   
+                   
+                   
+                   <table>  
+                   <tr>
+                     <th class="sk_detail_h_s_readonly" >申請社員</th>
+                   </tr>
+                   <tr>
+                     <td><input readonly type="text" id="shinseisyain_no" name="shinseisyain_no"  class="sk_detail_t_s_readonly"  value={{ Shins.shinsei_syainno }}></td>
+
+                   </tr>
+                   </table> 
+                   
+                   <br>
+                                     
+                   <table>  
+                   <tr>
+                     <th class="sk_detail_h_s_readonly" >申請番号</th>
+                   </tr>
+                   <tr>
+                     <td><input readonly type="text" id="shinsei_no" name="shinsei_no"  class="sk_detail_t_s_readonly"  value={{ Shins.shinsei_no }}></td>
+                   </tr>
+                   </table> 
+                   
+                   <br>
+                                              
+                   <table>  
+                   <tr>
+                     <th class="sk_detail_h_s_readonly" >申請ルート</th>
+                   </tr>
+                   <tr>
+                     <td><input readonly type="text" id="root_id" name="root_id"  class="sk_detail_t_s_readonly" value={{ Shins.root_id }}></td>
+                   </tr>
+                   </table> 
+                   
+                   <br>
+                                     
+                   <table>  
+                   <tr>
+                     <th class="sk_detail_h_s_readonly" >申請日</th>
+                   </tr>
+                   <tr>
+                     <td><input readonly type="text" id="shinseisyain_no" name="shinseisyain_no"  class="sk_detail_t_s_readonly" value={{ Shins.shinsei_shinseid }}></td>
+                   </tr>
+                   </table> 
+                   
+                   <br>
+                   
+                   <table>  
+                   <tr>
+                     <th class="sk_detail_h_l_readonly" >申請タイトル</th>
+                   </tr>
+                   <tr>
+                     <td><input readonly type="text" id="cont_shinsei_title" name="cont_shinsei_title" class="sk_detail_t_l_readonly" value={{Shins.shinsei_title }}></td>
+                   </tr>
+                   </table> 
+                   <br>
+                                     
+                   <table>  
+                   <tr>
+                     <th class="sk_detail_h_l_readonly" >申請内容</th>
+                   </tr>
+                   <tr>
+                     <td><textarea readonly id="cont_shinsei_detail" name="cont_shinsei_detail"  style="width: 1000px; height: 300px;" >{{Shins.shinsei_detail}}</textarea></td>
+                     
+                   </tr>
+                   </table> 
+                                     
+                                     
+                                     
+                                     
+                                     
+                                     
+                   {% endfor %}  
+                   
+                   <br>                   
+                   <table>              
+     
+                   <tr>
+                     <th class="sk_detail_kyoka_h" >承認可否</th>
+                   </tr>
+                   </table>                   
+                   <table class ="sk_detail_kyoka">                   
+                   <tr><td>
+		           <input type="radio" id="radio" name="radio" value="1" checked="checked">
+                   <label for="rad1">承認する</label>
+		           <br>
+		           <input type="radio" id="radio" name="radio" value="2">
+                   <label for="rad2">承認しない</label>
+                   </td></tr>
+                   </table>                   
+                   
+                   <br>                   
+                   
+                   
+               
+                   
+                   
+                   
+                   
+                   
+                   
+                   <br>
+                   <table>  
+                   <tr>
+                     <th class="sk_detail_reason_denied_h">不許可理由</th>
+                   </table>  
+                   <table>  
+                   <tr><td>                    
+                    <textarea id="cont_reason_denied" name="cont_reason_denied" placeholder="不許可の場合はここに理由を入力(200文字まで)"  maxlength="200" style="width: 1000px; height: 50px;"></textarea>                    
+                  </td></tr>
+                  </table> 
+
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   <br>
+
+                   <br>
+                   <td><input type="submit" name="shinsei" id="shinsei" class="btn-delete"  value="確定する" style="width: 100px; height: 25px;"></td>
+                   
+                   </form>
+                   
+                    
+                   
+                   
+                   
+                   
+                   <script>
+var shinsei = document.getElementById('shinsei');
+ 
+shinsei.addEventListener('click', function() {
+    var result = window.confirm('登録します。よろしいでしょうか？');
+    
+    if( result ) {
+        alert('登録しました');
+        location.reload(true);
+        
+        
+    }
+    else {
+        console.log('キャンセルしました');
+    }
+})
+</script>
+                   
+                   
+                   
+                   
+ </html> 
+
+
+
+
+    {% endblock %}
+</body>

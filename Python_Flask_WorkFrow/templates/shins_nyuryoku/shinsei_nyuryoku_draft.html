@@ -1,0 +1,415 @@
+﻿{% extends 'menu_header.html' %}
+
+
+
+
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<html lang="ja">
+<head>
+    <title>申請入力(下書き)</title>
+</head>
+<body>
+
+{% block body %}
+
+
+{% if MODE == 'draft' %}
+
+              <form action="/shinsei_nyuryoku_draft" method="post">
+
+        {% for Shins in shinseistr %}
+                     <table>  
+                     <tr>
+                       <th class="k_head_small_readonly" >申請社員</th>
+                     </tr>
+                     <tr>
+                       <td><input readonly type="text" id="syain_no" name="syain_no"" class="k_title_small" value={{ID}}></td>
+                     </tr>
+                     </table> 
+                     
+                     <br>
+                                   
+                     <table>  
+                     <tr>
+                       <th class="k_head_small_readonly" >申請番号(自動採番)</th>
+                     </tr>
+                     <tr>
+                       <td><input readonly type="text" id="shinseino" name="shinseino" class="k_title_small" value={{Shins.shinsei_no}}></td>
+                     </tr>
+                     </table> 
+                     
+                     <br>
+                     
+                     <table>  
+                     <tr>
+                       <th class="k_head_small" >申請日(yyyy/mm/dd)</th>
+                     </tr>
+                     <tr>
+                       <td><input type="date" id="cont_shinseid" name="cont_shinseid" class="k_title_small" value={{Shins.shinseid}}></td>
+                    </tr>
+                    </table> 
+                    
+                    <br>
+                                  
+                     <!--ドロップダウンリストをDBから取得する-->
+                    <table>  
+                    <tr>
+                      <th class="k_head_small" >申請ルート</th>
+                    </tr>
+                    <tr>
+                         <td><select  name="shinsei_root" id="shinsei_root" style="width: 150px; height: 25px;">
+                           <option>{{Shins.root_id}}</option>
+                            {% for Shins_root in Root  %}
+                            <option>{{ Shins_root.root_id }}:{{Shins_root.rootname }}</option>
+                            {% endfor %}
+                         </select></td> 
+                        </tr> 
+                    </table> 
+                    <font size="1" color="#000099">※前回保存した申請ルート:{{Shins.root_id}}</font><br>
+
+                                  <br>
+                   
+                   
+                   <br>
+                                 
+                   <table>  
+                   <tr>
+                     <th class="k_head" >申請タイトル</th>
+                   </tr>
+                   <tr>
+                     <td><input  type="text" id="cont_shinsei_title" name="cont_shinsei_title" class="k_title" maxlength="60" placeholder="※60文字まで入力可" value={{Shins.shinsei_title}}></td>
+                   </tr>
+                   </table> 
+                                 
+                          <br>       
+                   <table>  
+                   <tr>
+                     <th class="k_head">内容</th>
+                   </table> 
+                   
+                   
+                 <!--onloadはページロード時のJavascript。非表示にしたtextareaから申請内容を取得する。申請内容は改行単位(\n)で取得し値をセットする-->
+                   <script>
+                    window.onload = function(){
+
+                    var str = document.getElementById('cont_shinsei_detail');
+                    var resArray = str.value.split(/\n/);
+                    var len = resArray.length
+
+                      for (let i = 0; i < len; i++) {
+                       document.getElementById( "cont_shinsei_detail"+[i+1] ).value = resArray[i];
+                      }
+                    }
+                   </script>                   
+          
+                   <table>  
+                   <tr><td>
+                    <input type="text" id="cont_shinsei_detail1"  name="cont_shinsei_detail1" style="width: 780px; height: 25px;" maxlength="60">
+                    <input type="text" id="cont_shinsei_detail2"  name="cont_shinsei_detail2" style="width: 780px; height: 25px;" maxlength="60">
+                    <input type="text" id="cont_shinsei_detail3"  name="cont_shinsei_detail3" style="width: 780px; height: 25px;" maxlength="60">
+                    <input type="text" id="cont_shinsei_detail4"  name="cont_shinsei_detail4" style="width: 780px; height: 25px;"maxlength="60">
+                    <input type="text" id="cont_shinsei_detail5"  name="cont_shinsei_detail5" style="width: 780px; height: 25px;"maxlength="60"> 
+                    <input type="text" id="cont_shinsei_detail6"  name="cont_shinsei_detail6" style="width: 780px; height: 25px;"maxlength="60"> 
+                    <input type="text" id="cont_shinsei_detail7"  name="cont_shinsei_detail7" style="width: 780px; height: 25px;"maxlength="60"> 
+                    <input type="text" id="cont_shinsei_detail8"  name="cont_shinsei_detail8" style="width: 780px; height: 25px;"maxlength="60"> 
+                    <input type="text" id="cont_shinsei_detail9"  name="cont_shinsei_detail9" style="width: 780px; height: 25px;"maxlength="60"> 
+                    <input type="text" id="cont_shinsei_detail10" name="cont_shinsei_detail10" style="width: 780px; height: 25px;" maxlength="60">
+                    <input type="text" id="cont_shinsei_detail11" name="cont_shinsei_detail11" style="width: 780px; height: 25px;" maxlength="60">
+                    <input type="text" id="cont_shinsei_detail12" name="cont_shinsei_detail12" style="width: 780px; height: 25px;" maxlength="60">
+                    <input type="text" id="cont_shinsei_detail13" name="cont_shinsei_detail13" style="width: 780px; height: 25px;" maxlength="60">
+                    <input type="text" id="cont_shinsei_detail14" name="cont_shinsei_detail14" style="width: 780px; height: 25px;" maxlength="60">
+                    <input type="text" id="cont_shinsei_detail15" name="cont_shinsei_detail15" style="width: 780px; height: 25px;" maxlength="60">
+                    <input type="text" id="cont_shinsei_detail16" name="cont_shinsei_detail16" style="width: 780px; height: 25px;" maxlength="60">                    
+                  </td></tr>
+                  </table> 
+
+
+                   <br>
+                   
+                   <table>  
+                   <tr>
+                     <th class="k_head" >添付ファイル</th>
+                   </tr>
+                   </table>  
+                   <table>  
+                   <tr><td>
+                   <input type="test" id="file1" name="file1" maxlength="200" style="width: 780px; height: 25px;"  placeholder="添付ファイル1 (※1行200文字まで入力可)">
+                   <input type="text" id="file2" name="file2" maxlength="200" style="width: 780px; height: 25px;"  placeholder="添付ファイル2">
+                   <input type="text" id="file3" name="file3" maxlength="200" style="width: 780px; height: 25px;"  placeholder="添付ファイル3">
+                   </td></tr>
+                   </table> 
+                   
+                   
+                   <br>
+                   
+                   <table>              
+     
+                   <tr>
+                     <th class="sk_detail_kyoka_h" >選択</th>
+                   </tr>
+                   </table>                   
+                   <table class ="sk_detail_kyoka">                   
+                   <tr><td>
+		           <input type="radio" id="radio" name="radio" value="1" checked="checked">
+                   <label for="rad1">申請する</label>
+		           <br>
+		           <input type="radio" id="radio" name="radio" value="2">
+                   <label for="rad2">下書きとして保存</label>
+                   
+                   {% if Shins.shinsei_result=='2' %}
+                   <br>
+		           <input type="radio" id="radio" name="radio" value="3">
+                   <label for="rad3">削除する</label>
+                   {% endif %}
+                          
+                   </td></tr>
+                   </table>                   
+
+                   
+                   
+                   
+                   
+                   
+                   <br>
+                   
+                 <!--非表示のワーク領域。このtextareaに編集された文字列をJavascriptで配列に格納して「内容」部に編集する-->
+                   <table>  
+                   <tr>
+                   <td><textarea readonly id="cont_shinsei_detail" name="cont_shinsei_detail" class="textarea_hidden" >{{Shins.shinsei_detail}}</textarea></td>
+                   </tr>
+                   </table> 
+
+                   
+                   
+                   
+                   
+                   
+        {% endfor %}
+        
+        
+                 <!--非表示のワーク領域。Javasriptで表示された「はい」「いいえ」確認ダイアログで選択した選択肢を格納する-->
+                   <input id="flg_yes_no"  name="flg_yes_no" class="textarea_hidden">
+                   <input id="cont_mode"  name="cont_mode" class="textarea_hidden" value={{MODE}}>
+                   <br>
+                   <td><input type="submit" name="btnsubmit" id="btnsubmit" class="btn-delete"  value="確定する" style="width: 100px; height: 25px;"></td>
+                </form>
+                   
+                
+{% else %}
+     
+
+     
+     
+                 <!--申請取り消し-->
+         <form action="/shinsei_nyuryoku_draft" method="post">
+         <td><input type="submit" name="btnsubmit" id="btnsubmit"  class="btn-delete" value="取消" style="width: 100px; height: 40px; position: absolute; right: 20px; top: 125px" ></td>
+
+        {% for Shins in shinseistr %}
+                     <table>  
+                     <tr>
+                       <th class="sk_detail_h_s_readonly" >申請社員</th>
+                     </tr>
+                     <tr>
+                       <td><input readonly type="text" id="syain_no" name="syain_no"" class="k_title_small" value={{ID}}></td>
+                     </tr>
+                     </table> 
+                     
+                     <br>
+                                   
+                     <table>  
+                     <tr>
+                       <th class="sk_detail_h_s_readonly" >申請番号(自動採番)</th>
+                     </tr>
+                     <tr>
+                       <td><input readonly type="text" id="shinseino" name="shinseino" class="k_title_small" value={{Shins.shinsei_no}}></td>
+                     </tr>
+                     </table> 
+                     
+                     <br>
+                     
+                     <table>  
+                     <tr>
+                       <th class="sk_detail_h_s_readonly" >申請日(yyyy/mm/dd)</th>
+                     </tr>
+                     <tr>
+                       <td><input type="date" id="cont_shinseid" name="cont_shinseid" class="k_title_small" value={{Shins.shinseid}}></td>
+                    </tr>
+                    </table> 
+                    
+                    <br>
+                                  
+                     <!--ドロップダウンリストをDBから取得する-->
+                    <table>  
+                    <tr>
+                      <th class="sk_detail_h_s_readonly" >申請ルート</th>
+                    </tr>
+                    <tr>
+                         <td><select  name="shinsei_root" id="shinsei_root" style="width: 150px; height: 25px;">
+                            {% for Shins_root in Root  %}
+                            <option>{{ Shins_root.root_id }}:{{Shins_root.rootname }}</option>
+                            {% endfor %}
+                         </select></td> 
+                        </tr> 
+                    </table> 
+                    <font size="1" color="#000099">※前回保存した申請ルート:{{Shins.root_id}}</font><br>
+
+                   <br>
+                                 
+                   <table>  
+                   <tr>
+                     <th class="sk_detail_h_l_readonly" >申請タイトル</th>
+                   </tr>
+                   <tr>
+                     <td><input  type="text" id="cont_shinsei_title" name="cont_shinsei_title" class="k_title" maxlength="60" placeholder="※60文字まで入力可" value={{Shins.shinsei_title}}></td>
+                   </tr>
+                   </table> 
+                                 
+                          <br>       
+                   <table>  
+                   <tr>
+                     <th class="sk_detail_h_l_readonly">内容</th>
+                   </table> 
+                   
+                   
+                 <!--onloadはページロード時のJavascript。非表示にしたtextareaから申請内容を取得する。申請内容は改行単位(\n)で取得し値をセットする-->
+                   <script>
+                    window.onload = function(){
+
+                    var str = document.getElementById('cont_shinsei_detail');
+                    var resArray = str.value.split(/\n/);
+                    var len = resArray.length
+
+                      for (let i = 0; i < len; i++) {
+                       document.getElementById( "cont_shinsei_detail"+[i+1] ).value = resArray[i];
+                      }
+                    }
+                   </script>                   
+          
+                   <table>  
+                   <tr><td>
+                    <input type="text" id="cont_shinsei_detail1"  name="cont_shinsei_detail1" style="width: 780px; height: 25px;" maxlength="60">
+                    <input type="text" id="cont_shinsei_detail2"  name="cont_shinsei_detail2" style="width: 780px; height: 25px;" maxlength="60">
+                    <input type="text" id="cont_shinsei_detail3"  name="cont_shinsei_detail3" style="width: 780px; height: 25px;" maxlength="60">
+                    <input type="text" id="cont_shinsei_detail4"  name="cont_shinsei_detail4" style="width: 780px; height: 25px;"maxlength="60">
+                    <input type="text" id="cont_shinsei_detail5"  name="cont_shinsei_detail5" style="width: 780px; height: 25px;"maxlength="60"> 
+                    <input type="text" id="cont_shinsei_detail6"  name="cont_shinsei_detail6" style="width: 780px; height: 25px;"maxlength="60"> 
+                    <input type="text" id="cont_shinsei_detail7"  name="cont_shinsei_detail7" style="width: 780px; height: 25px;"maxlength="60"> 
+                    <input type="text" id="cont_shinsei_detail8"  name="cont_shinsei_detail8" style="width: 780px; height: 25px;"maxlength="60"> 
+                    <input type="text" id="cont_shinsei_detail9"  name="cont_shinsei_detail9" style="width: 780px; height: 25px;"maxlength="60"> 
+                    <input type="text" id="cont_shinsei_detail10" name="cont_shinsei_detail10" style="width: 780px; height: 25px;" maxlength="60">
+                    <input type="text" id="cont_shinsei_detail11" name="cont_shinsei_detail11" style="width: 780px; height: 25px;" maxlength="60">
+                    <input type="text" id="cont_shinsei_detail12" name="cont_shinsei_detail12" style="width: 780px; height: 25px;" maxlength="60">
+                    <input type="text" id="cont_shinsei_detail13" name="cont_shinsei_detail13" style="width: 780px; height: 25px;" maxlength="60">
+                    <input type="text" id="cont_shinsei_detail14" name="cont_shinsei_detail14" style="width: 780px; height: 25px;" maxlength="60">
+                    <input type="text" id="cont_shinsei_detail15" name="cont_shinsei_detail15" style="width: 780px; height: 25px;" maxlength="60">
+                    <input type="text" id="cont_shinsei_detail16" name="cont_shinsei_detail16" style="width: 780px; height: 25px;" maxlength="60">                    
+                  </td></tr>
+                  </table> 
+
+
+                   <br>
+                   
+                   <table>  
+                   <tr>
+                     <th class="sk_detail_h_l_readonly" >添付ファイル</th>
+                   </tr>
+                   </table>  
+                   <table>  
+                   <tr><td>
+                   <input type="test" id="file1" name="file1" maxlength="200" style="width: 780px; height: 25px;"  placeholder="添付ファイル1 (※1行200文字まで入力可)">
+                   <input type="text" id="file2" name="file2" maxlength="200" style="width: 780px; height: 25px;"  placeholder="添付ファイル2">
+                   <input type="text" id="file3" name="file3" maxlength="200" style="width: 780px; height: 25px;"  placeholder="添付ファイル3">
+                   </td></tr>
+                   </table> 
+                   
+                   
+                   <br>
+                                      
+                 <!--非表示のワーク領域。このtextareaに編集された文字列をJavascriptで配列に格納して「内容」部に編集する-->
+                   <table>  
+                   <tr>
+                   <td><textarea readonly id="cont_shinsei_detail" name="cont_shinsei_detail" class="textarea_hidden" >{{Shins.shinsei_detail}}</textarea></td>
+                   </tr>
+                   </table> 
+
+                   
+        {% endfor %}
+        
+        
+                 <!--非表示のワーク領域。Javasriptで表示された「はい」「いいえ」確認ダイアログで選択した選択肢を格納する-->
+                   <input id="flg_yes_no"  name="flg_yes_no" class="textarea_hidden">
+                   <input id="cont_mode"  name="cont_mode" class="textarea_hidden" value={{MODE}}>
+                   
+       <td><textarea readonly id="cont_id" name="cont_id" class="textarea_hidden" >{{ID}}</textarea></td>
+                  
+                </form>
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+{% endif %}
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+               
+                   
+         
+                   
+                   
+                   
+                   
+                   
+                   
+                   <script>
+var shinsei = document.getElementById('shinsei');
+ 
+shinsei.addEventListener('click', function() {
+    var result = window.confirm('登録します。よろしいでしょうか？');
+    
+    if( result ) {
+        alert('登録しました');
+        location.reload(true);
+        
+        
+    }
+    else {
+        console.log('キャンセルしました');
+    }
+})
+</script>
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+ </html> 
+
+
+
+
+    {% endblock %}
+</body>

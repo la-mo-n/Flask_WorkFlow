@@ -1,0 +1,103 @@
+﻿{% extends 'menu_header.html' %}
+
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html lang="ja">
+<head>
+    <title>formsample</title>
+</head>
+<body>
+
+
+
+
+
+
+{% block body %}
+
+
+
+
+<body>
+    <form action="/top_page" method="post" >  
+    
+
+<input id="syain_id"  name="syain_id" class="textarea_hidden" value={{ID}}>
+
+
+
+
+
+<td><font size="4" color="#002200"><center>通知情報</center></font></td>
+   
+   <br>
+   
+   {% if Infostr|length < 1 %}
+    <h4 style="text-align: center">通知はありません</h4>
+    
+    
+    
+    {% else %}
+    
+    
+    
+    
+    <table class="sk_h_l_readonly" border=1>
+        <tr>
+            <th width="100">通知日</th>
+            <th width="150">申請社員</th>
+            <th width="100">申請番号</th>
+            <th width="600">内容</th>
+            
+            <th width="90"></th>
+            
+        </tr>
+    </table>
+
+    
+    
+    
+    
+    
+    
+    
+    <table class="sk_t_l_readonly" border=1>     
+        {% for Inf in Infostr %}
+        <tr>  
+        
+            <td style="width: 100px; height: 25px;">{{ Inf.M_Msg.torokud }}</td>
+            
+            <td style="width: 150px; height: 25px;">{{ Inf.M_Syain.name }}</td>
+            <td style="width: 100px; height: 25px;">{{ Inf.M_Msg.shinsei_no }}</td>
+            <td style="width: 600px; height: 25px;">{{ Inf.M_Msg.detail }}</td>
+
+            <td width="90">
+               <a class="btn-detail" name="btndlt" id="btndlt" href="/top_page/confirm/{{ID}}/{{Inf.M_Msg.shinsei_no}}/{{ Inf.M_Msg.from_syainno }}/{{ Inf.M_Msg.to_syainno }}">確認</a>
+               <a class="btn-detail2" name="btndlt" id="btndlt" href="/top_page/hide/{{ID}}/{{Inf.M_Msg.shinsei_no}}/{{ Inf.M_Msg.from_syainno }}/{{ Inf.M_Msg.to_syainno }}">隠す</a>
+            </td>
+         
+         
+         
+         <input id="from_syain_id"  name="from_syain_id" class="textarea_hidden" value={{ Inf.M_Msg.from_syainno }}>
+         <input id="to_syain_id"  name="to_syain_id" class="textarea_hidden" value={{ Inf.M_Msg.to_syainno }}>
+         <input id="shinseino"  name="shinseino" class="textarea_hidden" value={{ Inf.M_Msg.shinsei_no }}>
+         
+         
+        </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+</body>

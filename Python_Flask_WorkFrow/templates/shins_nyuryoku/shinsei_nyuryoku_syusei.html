@@ -1,0 +1,105 @@
+﻿{% extends 'menu_header.html' %}
+
+
+
+
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html lang="ja">
+<head>
+    <title>申請入力(修正)</title>
+</head>
+<body>
+
+
+{% block body %}
+
+
+<center><td><font size="2" color="#002200">{{ HMSG }}</font></td></center>
+
+
+<form action="/shinsei_nyuryoku_syusei" method="POST">
+
+
+
+         <td><input type="submit" name="btn" id="btn"  class="btn-delete" value="申請取消" style="width: 130px; height: 40px; position: absolute; right: 20px; top: 125px" ></td>
+         <td><input type="submit" name="btn" id="btn"  class="btn-delete" value="下書き・不許可" style="width: 130px; height: 40px; position: absolute; right: 170px; top: 125px" ></td>
+
+
+
+{% if shinseistr|length < 1 %}
+    <h4 style="text-align: center">データはありません</h4>
+    {% else %}
+
+
+    <table class="sk_h_l_readonly" border=1>
+        <tr>
+            <th width="110">申請日</th>
+            <th width="120">申請番号</th>
+            <th width="770">タイトル</th>
+            <th width="40"></th>
+        </tr>
+    </table>
+        
+    <table class="sk_t_l_readonly" border=1>
+        {% for Shins in shinseistr %}
+        <tr>        							
+            <td width="110"><center>{{ Shins.shinseid }}</center></td>
+            <td width="120">{{ Shins.shinsei_no }}</td>
+            
+            {% if Shins.shinsei_result=='2' %}
+            <td width="770"><font size="2" color="#ff0000">【※不許可】</font>{{ Shins.shinsei_title }}</td>
+            {% else %}
+            <td width="770">{{ Shins.shinsei_title }}</td>
+            {% endif %}
+            
+            <td>
+                <a class="btn-detail" href="shinsei_nyuryoku_draft?id={{ID}}&no={{Shins.shinsei_no}}&mode={{MODE}}" >詳細</a>
+                
+                
+            </td>
+            
+            
+        </tr>
+        
+        
+        
+        {% endfor %}
+    </table>
+
+    {% endif %}
+    
+    
+    
+    
+    
+    <td><input type="text" name="cont_id" id="cont_id" value={{ ID }} class="textarea_hidden"></td>
+
+    
+    
+
+</form>
+    
+    
+    
+    
+    
+</body>    
+    
+
+                   
+    
+    
+    
+                
+    
+    
+    
+    
+    
+    
+    
+    
+ </html> 
+{% endblock %}

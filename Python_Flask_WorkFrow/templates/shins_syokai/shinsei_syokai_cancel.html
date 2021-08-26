@@ -1,0 +1,102 @@
+﻿{% extends 'menu_header.html' %}
+
+
+
+
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html lang="ja">
+<head>
+    <title>申請照会</title>
+</head>
+<body>
+
+
+{% block body %}
+
+
+<td>{{ ID }}</td>
+
+
+
+
+
+
+<form action="/shinsei_syokai" method="POST">
+
+
+    <td><input type="submit" name="btn_mod" id="btn_mod"  class="btn-delete" value="承認取消" style="width: 100px; height: 40px; position: absolute; right: 20px; top: 125px" ></td>
+
+
+    <table class="sk_h_l_readonly" border=1>
+        <tr>
+            <th width="110">申請日</th>
+            <th width="120">申請番号</th>
+            <th width="620">タイトル</th>
+            <th width="110">状態</th>
+            <th width="40"></th>
+            <th width="40"></th>
+        </tr>
+    </table>
+        
+    <table class="sk_t_l_readonly" border=1>
+        {% for Shins in shinseistr %}
+        <tr>        							
+            <td width="110"><center>{{ Shins.shinseid }}</center></td>
+            <td width="120">{{ Shins.shinsei_no }}</td>
+            <td width="620">{{ Shins.shinsei_title }}</td>
+            <td width="110">
+            
+            </td>
+            <td>
+                <a class="btn-detail" href="shinsei_syokai_detail?id={{ID}}&no={{Shins.shinsei_no}}"  target="_blank">詳細</a>
+            </td>
+            <td>
+               <a class="btn-detail" name="btndlt" id="btndlt" href="shinsei_syokai_delete?id={{ID}}&no={{Shins.shinsei_no}}">削除</a>
+            </td>
+        </tr>
+        
+        
+        
+        {% endfor %}
+    </table>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <td><input type="text" name="cont_id" id="cont_id" value={{ ID }}></td>
+
+</form>
+    
+    
+    
+    
+    
+</body>    
+    
+
+                   
+    
+    
+    
+                
+    
+    
+    
+    
+    
+    
+    
+    
+ </html> 
+{% endblock %}

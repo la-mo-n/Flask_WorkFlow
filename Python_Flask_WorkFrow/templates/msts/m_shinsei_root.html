@@ -1,0 +1,158 @@
+﻿{% extends 'menu_header.html' %}
+
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html lang="ja">
+<head>
+    <title>申請ルートマスタメンテ</title>
+</head>
+
+
+
+
+
+{% block body %}
+<body>
+
+
+
+    <form action="/m_shinsei_root" method="post" >  
+
+
+
+
+    <h3><center>申請ルートマスタメンテ</center></h3>
+
+<td><font size="2" color="#002200">※「削除」:その申請ルートを誰も使用中でない場合に削除可能です</font></td>
+    
+   {% if Root|length < 1 %}
+    <h4 style="text-align: center">登録情報がありません</h4>
+    {% else %}
+    
+    
+    <table class="sk_h_l_readonly" border=1>
+        <tr>
+            <th width="130">申請ルートID</th>
+            <th width="450">申請ルート名</th>
+            <th width="100">申請経路1</th>
+            <th width="100">申請経路2</th>
+            <th width="100">申請経路3</th>
+            <th width="120">最終承認者</th>
+            <th width="50"></th>
+        </tr>
+    </table>
+        
+    <table class="sk_t_l_readonly" border=1>     
+        {% for Shins_root in Root %}
+        <tr>        							
+            <td style="width: 130px; height: 25px;"><center>{{ Shins_root.root_id }}</center></td>
+            <td style="width: 450px; height: 25px;">{{ Shins_root.rootname }}</td>
+            <td style="width: 100px; height: 25px;"><center>{{ Shins_root.shinsei_root1_id }}</center></td>
+            
+            <td style="width: 100px; height: 25px;">
+            {% if Shins_root.shinsei_root2_id == None %}
+            
+            {% else %}
+            <center>{{ Shins_root.shinsei_root2_id }}</center>
+            {% endif %}
+            </td>
+            <td style="width: 100px; height: 25px;">
+            {% if Shins_root.shinsei_root3_id == None %}
+            
+            {% else %}
+            <center>{{ Shins_root.shinsei_root3_id }}</center>
+            {% endif %}
+            </td>
+            
+            <td style="width: 120px; height: 25px;"><center>{{ Shins_root.last_approval_id }}</center></td>
+            
+
+            <td width="50">
+               <center><a class="btn-detail" name="btndlt" id="btndlt" href="/m_shinsei_root/delete/{{ Shins_root.root_id }}/{{ID}}">削除</a></center>
+
+
+
+
+
+            </td>
+            
+            
+            
+            
+        </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+
+
+
+<br><br>
+
+
+    <h3><center>新規追加</center></h3>
+    <font size="3" class="Msg" color="#FF0000">{{ Msg }}</font>
+
+    <table class="k_head" border=1>
+        <tr>
+            <th>申請ルートID</th>
+            <th>申請ルート名</th>
+            <th>申請経路1</th>
+            <th>申請経路2</th>
+            <th>申請経路3</th>
+            <th></th>
+        </tr>
+      
+        <tr>      							
+            <td><input type="text" name="root_id" id="root_id" style="width: 125px; height: 25px;" maxlength="5" minlength="5" pattern="^[0-9A-Za-z]+$" placeholder="※半角英数字5文字" required></td>
+            <td><input type="text" name="root_name" id="root_name" style="width: 350px; height: 25px;" maxlength="40" placeholder="※40文字まで入力可"></td>
+            
+            <td>
+              <select  name="root_1" id="root_1" style="width: 150px; height: 25px;">
+                       {% for Empstr in Syainstr %}
+              <option>{{ Empstr.id }}:{{ Empstr.name }}</option>
+                       {% endfor %}
+              </select>
+            </td>
+             
+            <td>
+              <select  name="root_2" id="root_2" style="width: 150px; height: 25px;">
+               <option></option>
+                       {% for Empstr in Syainstr %}
+              <option>{{ Empstr.id }}:{{ Empstr.name }}</option>
+                       {% endfor %}
+              </select>
+            </td>      
+                  
+             <td>
+              <select  name="root_3" id="root_3" style="width: 150px; height: 25px;">
+               <option></option>
+                       {% for Empstr in Syainstr %}
+              <option>{{ Empstr.id }}:{{ Empstr.name }}</option>
+                       {% endfor %}
+              </select>
+            </td>           
+            
+            <td><input type="submit" name="shinsei_root_update" id="shinsei_root_update" class="btn-add"  value="新規追加" style="width: 100px; height: 25px;"></td>
+            
+            
+      <!--非表示のワーク領域。Javasriptで表示された「はい」「いいえ」確認ダイアログで選択した選択肢を格納する-->
+        <input id="flg_yes_no"  name="flg_yes_no" class="textarea_hidden">
+       <td><textarea readonly id="cont_id" name="cont_id" class="textarea_hidden" >{{ID}}</textarea></td>
+        
+        
+        
+            </form>
+        </tr>
+     </table>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+</body>

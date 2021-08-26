@@ -1,0 +1,100 @@
+﻿{% extends 'menu_header.html' %}
+
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html lang="ja">
+<head>
+    <title>formsample</title>
+</head>
+<body>
+
+
+
+
+
+
+{% block body %}
+
+
+<body>
+    <form action="/m_busyo" method="post" >  
+    
+    <h3><center>部署マスタメンテ</center></h3>
+            <input id="syain_id"  name="syain_id" class="textarea_hidden" value={{ID}}>
+
+<td><font size="2" color="#002200">※部署名を変更する場合：一旦削除し、再度新規登録して下さい</font></td>
+    
+   {% if Busyostr|length < 1 %}
+    <h4 style="text-align: center">登録情報がありません</h4>
+    {% else %}
+    
+    
+    <table class="sk_h_l_readonly" border=1>
+        <tr>
+            <th width="150">部署ID</th>
+            <th width="800">部署名</th>
+            <th width="50"></th>
+        </tr>
+    </table>
+        
+    <table class="sk_t_l_readonly" border=1>     
+        {% for Busyo in Busyostr %}
+        <tr>        							
+            <td style="width: 150px; height: 25px;"><center>{{ Busyo.busyoid }}</center></td>
+            <td style="width: 800px; height: 25px;">{{ Busyo.busyoname }}</td>
+            
+       
+            <td width="50">
+               <center><a class="btn-detail" name="btndlt" id="btndlt" href="/m_busyo/delete/{{ Busyo.busyoid }}/{{ID}}">削除</a></center>
+            </td>
+            
+            
+            
+            
+        </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+
+
+
+<br><br>
+
+
+    <h3><center>新規追加</center></h3>
+    <table class="k_head" border=1>
+        <tr>
+            <th>部署ID</th>
+            <th>部署名</th>
+            <th></th>
+        </tr>
+      
+        <tr>      							
+            <td><input type="text" name="busyo_id" id="busyo_id" style="width: 130px; height: 25px;" maxlength="5" minlength="5" pattern="^[0-9A-Za-z]+$" placeholder="※半角英数字5文字" required></td>
+            <td><input type="text" name="busyo_name" id="busyo_name" style="width: 800px; height: 25px;" maxlength="60" placeholder="※60文字まで入力可"></td>
+            
+            
+            <td><input type="submit" name="shinsei_root_update" id="shinsei_root_update" class="btn-add"  value="新規追加" style="width: 100px; height: 25px;"></td>
+            
+            
+      <!--非表示のワーク領域。Javasriptで表示された「はい」「いいえ」確認ダイアログで選択した選択肢を格納する-->
+        <input id="flg_yes_no"  name="flg_yes_no" class="textarea_hidden">
+        
+        <input id="syainid"  name="syainid" class="textarea_hidden" value={{ID}}>
+        
+        
+            </form>
+        </tr>
+     </table>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+</body>

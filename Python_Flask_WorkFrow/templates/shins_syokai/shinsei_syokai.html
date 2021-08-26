@@ -1,0 +1,109 @@
+﻿{% extends 'menu_header.html' %}
+
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html lang="ja">
+<head>
+    <title>申請照会</title>
+</head>
+<body>
+
+
+{% block body %}
+
+
+
+    {% if shinseistr|length < 1 %}
+    <h4 style="text-align: center">照会出来る情報がありません</h4>
+    {% endif %}    
+    
+    
+<form action="/shinsei_syokai" method="POST">
+    
+    <table>  
+    <tr>
+         <td><select  name="filter_mode" id="filter_mode" style="width: 100px; height: 25px;">
+           <option>{{MODE}}</option>
+           <option>全て</option>
+           <option>申請中</option>
+           <option>許可済</option>
+           <option>下書き</option>
+           <option>不許可</option>
+         </select></td> 
+             <td><font size="2" color="#000099">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日付検索</font></td>
+             <td><input type="date" id="shinseid_from" name="shinseid_from" class="k_title_small" value={{DATE_FROM}}></td>
+             <td><p>～</p></td>
+             <td><input type="date" id="shinseid_to" name="shinseid_to" class="k_title_small" value={{DATE_TO}}></td>
+             <td><input type="submit" name="btnsel" id="btnsel"  class="btn-delete" value="抽出" style="width: 50px; height: 25px;" ></td>
+     </tr>
+    </table> 
+
+
+        <font size="1" color="#000099">※最大100件まで表示しています</font><br>
+
+
+
+
+
+    <table class="sk_h_l_readonly" border=1>
+        <tr>
+            <th width="110">申請日</th>
+            <th width="120">申請番号</th>
+            <th width="620">タイトル</th>
+            <th width="110">状態</th>
+            <th width="40"></th>
+            <th width="40"></th>
+        </tr>
+    </table>
+        
+    <table class="sk_t_l_readonly" border=1>
+        {% for Shins in shinseistr %}
+        <tr>        							
+            <td width="110"><center>{{ Shins.shinseid }}</center></td>
+            <td width="120">{{ Shins.shinsei_no }}</td>
+            <td width="620">{{ Shins.shinsei_title }}</td>
+            
+            {% if Shins.shinsei_result == '0' %}
+               <td width="110"><center>申請中</center></td>
+            {% else %}
+               {% if Shins.shinsei_result == '1' %}
+                  <td width="110"><center>許可</center></td>
+               {% else %}
+                  {% if Shins.shinsei_result == '2' %}
+                      <td width="110"><center>不許可</center></td>
+                  {% else %}
+                       {% if Shins.shinsei_result == '9' %}
+                        <td width="110"><center>申請取消</center></td>
+                       {% else %}
+                        <td width="110"><center>下書き</center></td>
+                       {% endif %}
+                  {% endif %}
+              {% endif %}
+            {% endif %}
+
+            <td>
+                <a class="btn-detail" href="shinsei_syokai_detail?id={{ID}}&no={{Shins.shinsei_no}}"  target="_blank">詳細</a>
+            </td>
+            <td>
+               <a class="btn-detail2" name="btndlt" id="btndlt" href="shinsei_syokai_delete?id={{ID}}&no={{Shins.shinsei_no}}">削除</a>
+            </td>
+        </tr>
+        
+        
+        
+        {% endfor %}
+    </table>
+
+    
+    
+    <td><textarea readonly id="cont_id" name="cont_id" class="textarea_hidden" >{{ID}}</textarea></td>
+</form>
+        
+</body>    
+    
+    
+    
+    
+ </html> 
+{% endblock %}

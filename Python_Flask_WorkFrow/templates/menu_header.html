@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+{% block head %}
+<head>
+<meta charset="UTF-8">
+<title>{{TITLE}}</title>
+<link rel="stylesheet"href="{{ url_for('static', filename='css//menu_header.css') }}">
+
+
+<div class="cp_navi">
+<ul>
+	<li><a href="top_page?id={{ ID }}">Home</a></li>
+	<li>
+		<a>マスタ設定<span class="caret"></span></a>
+		<div>
+			<ul>
+				<li><a href="/m_syain?id={{ ID }}">社員マスタ</a></li>
+				<li><a href="/m_shinsei_root?id={{ ID }}">申請ルート</a></li>
+				<li><a href="/m_busyo?id={{ ID }}">部署マスタ</a></li>				
+			</ul>
+		</div>
+	</li>
+	<li>
+		<a>申請<span class="caret"></span></a>
+		<div>
+			<ul>
+				<li><a href="/shinsei_nyuryoku?id={{ ID }}">申請入力(新規)</a></li>
+				<li><a href="/shinsei_nyuryoku_syusei?id={{ ID }}">申請入力(修正)</a></li>
+				<li><a href="/shinsei_syokai?id={{ ID }}">申請照会</a></li>
+				<li><a href="/shinsei_kyoka?id={{ ID }}">申請許可</a></li>
+			</ul>
+		</div>
+	</li>	
+	
+	<li class="right"><a href="/">LOGOUT</a></li>
+</ul>
+</div>
+
+<h6 style="text-align:left" color="#000099">ログイン社員:{{ ID }}&nbsp;&nbsp;</h6>
+
+   
+</head>
+  {% endblock %}
+
+
+<body>
+
+
+<!--flashメッセージ定義部-->
+    {% for message in get_flashed_messages() %}
+<td><font size="2" color="#FF0000">{{ message }}</font></td>
+    {% endfor %}
+
+
+
+    {% block body %}
+   <td>{{ ID }}</td> 
+    {% endblock %}
+    
+    
+    
+<!--Javascriptの定義はボディ部下部に定義する-->
+<script type="text/javascript" src="{{ url_for('static', filename='css//Sys.js') }}"></script>
+    
+</body>
+
+
+</html>

@@ -1,0 +1,28 @@
+
+
+
+
+<html lang="en-JP">
+<link rel="stylesheet"href="{{ url_for('static', filename='css/login.css') }}">    
+
+<head>
+  <meta charset="utf-8">
+    <title>Login</title>
+</head>
+<br><br><br>
+    <div id="login">
+      <form action="" method="post" name="Login_Form" class="form-login">
+
+        <span class="fontawesome-user"></span>
+          <input type="text" id="user" name="cont_id"  placeholder="Username" required="" autofocus=""/>
+       
+       
+        <span class="fontawesome-lock"></span>
+          <input type="password" id="pass"  name="cont_pass" placeholder="Password" required=""/>
+        
+        
+        
+        <input type="submit" value="Login" name="Submit">
+			  <font size="3" class="Msg">{{ Msg }}</font>		 			 			 			 			 			
+</form>
+

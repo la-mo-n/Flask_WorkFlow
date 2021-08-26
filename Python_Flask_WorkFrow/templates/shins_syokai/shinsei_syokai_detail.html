@@ -1,0 +1,218 @@
+﻿{% extends 'menu_header.html' %}
+
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<html lang="ja">
+<head>
+    <title>申請照会(詳細)</title>
+</head>
+<body>
+{% block body %}
+<div class="backcolor">
+
+
+  <form action="/shinsei_syokai_detail" method="POST">
+     
+     
+     
+
+
+     {% for Shins in shinseistr %}
+
+
+{% if Shins.Shinsei_JNL.shinsei_result == '1' %}     
+     <td><input type="submit" name="btnsubmit" id="btnsubmit"  class="btn--prt" value="PDF印刷" style="width: 100px; height: 40px; position: absolute; right: 20px; top: 130px" ></td>
+{% endif %}
+
+
+
+
+     <table>  
+     <tr>
+       <th class="k_head_small_readonly" >申請社員</th>
+     </tr>
+     <tr>
+       <td><input readonly type="text" id="syain_no" name="syain_no"" class="k_title_small"  value={{ Shins.M_Syain.name }}></td>
+     </tr>
+     </table> 
+     <br>
+     
+     <table>  
+     <tr>
+       <th class="k_head_small_readonly" >部署</th>
+     </tr>
+     <tr>
+       <td><input readonly type="text" id="busyo" name="busyo"" class="k_title_small"  value={{ Shins.M_Busyo.busyoname }}></td>
+     </tr>
+     </table> 
+     <br>
+     
+     
+     <table>  
+     <tr>
+       <th class="k_head_small_readonly" >申請日</th>
+       <th class="k_head_small_readonly" >承認日</th>
+     </tr>
+     <tr>
+       <td><input readonly type="text" class="k_title_small" id="shinseid" name="shinseid"  value={{ Shins.Shinsei_JNL.shinseid }}></td>
+       
+       {% if Shins.Shinsei_JNL.shinsei_result == '1' %}
+          <td><input readonly type="text" class="k_title_small" id="kesaid" name="kesaid" value={{ Shins.Shinsei_JNL.koshind }}></td>
+       {% else %}
+          <td><input readonly type="text" class="k_title_small" id="kesaid" name="kesaid" value=""></td>
+       {% endif %}       
+     </tr>
+     </table> 
+     
+     <br>
+     
+     <table>  
+     <tr>
+       <th class="k_head_small_readonly" >申請番号</th>
+       <th class="k_head_small_readonly" >申請ルート</th>
+     </tr>
+     <tr>
+       <td><input readonly type="text" id="shinsei_no"  name="shinsei_no" class="k_title_small"  value={{ Shins.Shinsei_JNL.shinsei_no }}></td>
+       <td><input readonly type="text" class="k_title_small" id="root_id" name="root_id" value={{ Shins.Shinsei_JNL.root_id }}:{{ Shins.M_Shinsei_Root.rootname }}></td>
+     </tr>
+     </table> 
+     
+     <br>
+     
+     <table>  
+     <tr><th class="k_head_readonly2" >申請タイトル</th></tr>
+     <tr>
+        <td><input readonly type="text" class="k_title_readonly2" id="shinsei_title" name="shinsei_title" value={{Shins.Shinsei_JNL.shinsei_title }}></td>
+     </tr>
+     </table>
+    
+     <br>
+     
+     <table>  
+     <tr><th class="sk_h_l_readonly2" >申請内容</th></tr>
+     </table> 
+     <textarea readonly id="shinsei_detail" name="shinsei_detail"  class="sk_t_l_readonly2 "  style="width: 950px; height: 300px;" >{{Shins.Shinsei_JNL.shinsei_detail}}</textarea>
+
+     <br>
+     
+     
+     <table>
+     <tr>
+       <th class="k_head_small_readonly" >現在の申請決済者</th>
+     </tr>
+     <tr>
+     
+     
+       
+       
+            {% if Shins.Shinsei_JNL.shinsei_result == '0' %}
+               <td><input readonly type="text" id="syain_no" name="syain_no"" class="k_title_small"  value={{Shins.Shinsei_JNL.shinseisaki_syainno }}></td>
+            {% else %}
+               {% if Shins.Shinsei_JNL.shinsei_result == '1' %}
+                  <td><input readonly type="text" id="syain_no" name="syain_no"" class="k_title_small"  value={{Shins.Shinsei_JNL.shinseisaki_syainno }}></td>
+               {% else %}
+                  {% if Shins.Shinsei_JNL.shinsei_result == '2' %}
+                      <td><input readonly type="text" id="syain_no" name="syain_no"" class="k_title_small"  value={{ Shins.Shinsei_JNL.shinseisaki_syainno }}></td>
+                  {% else %}
+                      <td><input readonly type="text" id="syain_no" name="syain_no"" class="k_title_small"  value=""></td>
+                  {% endif %}
+               {% endif %}
+            {% endif %}
+       
+       
+       
+       
+       
+       
+     </tr>
+     </table> 
+     
+     <br>
+     
+     <table>
+     <tr>
+       <th class="k_head_small_readonly" >状態</th>
+     </tr>
+     <tr>
+       
+            {% if Shins.Shinsei_JNL.shinsei_result == '0' %}
+               <td><input readonly type="text" id="condition" name="condition" class="k_title_small"  value="申請中"></td>
+            {% else %}
+               {% if Shins.Shinsei_JNL.shinsei_result == '1' %}
+                  <td><input readonly type="text" id="condition" name="condition" class="k_title_small"  value="許可"></td>
+               {% else %}
+                  {% if Shins.Shinsei_JNL.shinsei_result == '2' %}
+                      <td><input readonly type="text" id="condition" name="condition" class="k_title_small"  value="不許可"></td>
+                  {% else %}
+                       {% if Shins.Shinsei_JNL.shinsei_result == '9' %}
+                        <td><input readonly type="text" id="condition" name="condition" class="k_title_small"  value="申請取消"></td>
+                       {% else %}
+                        <td><input readonly type="text" id="condition" name="condition" class="k_title_small"  value="下書き"></td>
+                       {% endif %}
+                  {% endif %}
+              {% endif %}
+            {% endif %}
+       
+     </tr>
+     </table> 
+     
+     <br>
+     
+     
+     
+     
+     
+     <table> 
+     <tr><th class="sk_h_l_readonly2" >不許可理由(記載があった場合に表示)</th></tr>
+     </table> 
+     <textarea class="sk_t_l_readonly2" id="reason_denied" name="reason_denied" style="width: 950px; height: 50px;">{{ Shins.Shinsei_JNL.reason_denied}}</textarea>
+
+
+     
+    {% endfor %}
+     
+     
+     <!--稟議書のハンコ用-->
+     <input id="stamp_shinseisya"  name="stamp_shinseisya" class="textarea_hidden" value={{SHINSEISYA.path_folder}}>
+     <input id="doc_shinseisya"  name="doc_shinseisya" class="textarea_hidden"  value={{SHINSEISYA.path_doc}}>
+     <input id="stamp_syain1"  name="stamp_syain1" class="textarea_hidden"  value={{SYAIN1.path_folder}}>
+     <input id="stamp_syain2"  name="stamp_syain2" class="textarea_hidden"  value={{SYAIN2.path_folder}}>
+     <input id="stamp_syain3"  name="stamp_syain3" class="textarea_hidden"  value={{SYAIN3.path_folder}}>
+     
+     
+     
+     
+     
+    <input id="syain_id"  name="syain_id" class="textarea_hidden" value={{ID}}>
+    <input id="flg_yes_no"  name="flg_yes_no" class="textarea_hidden">
+  </form>
+    
+
+                   
+</div>          
+      
+<script>         
+document.getElementById("btnsubmit").onclick = function(){
+	
+    var result = window.confirm("pdf出力しますか？");
+    
+    if( result ) {
+        document.getElementById("flg_yes_no").value = "YES";    
+        alert("社員マスタに登録されている格納先に出力しました");        
+    }
+    else {
+        document.getElementById("flg_yes_no").value = "NO";
+        alert("キャンセルしました");
+        return false;
+    }
+}
+</script>                   
+                   
+ </html> 
+
+
+    {% endblock %}
+
+</body>

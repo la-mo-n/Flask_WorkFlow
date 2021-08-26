@@ -1,0 +1,120 @@
+﻿{% extends 'menu_header.html' %}
+
+
+
+
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html lang="ja">
+<head>
+    <title>申請照会(削除)</title>
+</head>
+<body>
+
+{% block body %}
+
+
+
+         <form action="/shinsei_syokai_delete" method="post">
+         
+         
+         
+         <td><input type="submit" name="btndlt" id="btndlt"  class="btn-delete" value="削除" style="width: 100px; height: 40px; position: absolute; right: 20px; top: 125px" ></td>
+         
+         
+         {% for Shins in shinseistr %}
+        
+        
+        <table>  
+        <tr>
+          <th class="sk_detail_h_s_readonly" >申請社員</th>
+          <th class="sk_detail_h_s_readonly" >申請番号</th>
+        </tr>
+        <tr>
+          <td><input readonly type="text" id="syain_no" name="syain_no"  class="sk_detail_t_s_readonly"  value={{ Shins.shinsei_syainno }}></td>
+          <td><input readonly type="text" id="shinsei_no" name="shinsei_no"  class="sk_detail_t_s_readonly"  value={{ Shins.shinsei_no }}></td>
+        </tr>
+        </table> 
+        
+        <br>
+                                   
+        <table>  
+        <tr>
+          <th class="sk_detail_h_s_readonly" >申請ルート</th>
+          <th class="sk_detail_h_s_readonly" >申請日</th>
+        </tr>
+        <tr>
+          <td><input readonly type="text" id="root_id" name="root_id"  class="sk_detail_t_s_readonly" value={{ Shins.root_id }}></td>
+          <td><input readonly type="text" id="shinseisyain_no" name="shinseisyain_no"  class="sk_detail_t_s_readonly" value={{ Shins.shinsei_shinseid }}></td>
+        </tr>
+        </table> 
+        
+        <br>
+                                  
+        <table>  
+        <tr>
+          <th class="sk_detail_h_l_readonly" >申請タイトル</th>
+        </tr>
+        <tr>
+          <td><input readonly type="text" id="cont_shinsei_title" name="cont_shinsei_title" class="sk_detail_t_l_readonly" value={{Shins.shinsei_title }}></td>
+        </tr>
+        </table> 
+        <br>
+                          
+        <table>  
+        <tr>
+          <th class="sk_detail_h_l_readonly" >申請内容</th>
+        </tr>
+        <tr>
+          <td><textarea readonly id="cont_shinsei_detail" name="cont_shinsei_detail"  style="width: 1000px; height: 300px;" >{{Shins.shinsei_detail}}</textarea></td>
+        </tr>
+        </table> 
+                                     
+        {% endfor %}  
+        
+        <br> 
+                          
+        
+      <!--非表示のワーク領域。Javasriptで表示された「はい」「いいえ」確認ダイアログで選択した選択肢を格納する-->
+        <input id="flg_yes_no"  name="flg_yes_no" class="textarea_hidden">
+        
+        
+        </form>
+                   
+                    
+                   
+                   
+                   
+                   
+                   
+<script>
+var del = document.getElementById('btndlt');
+ 
+del.addEventListener('click', function() {
+    var result = window.confirm('削除します。よろしいでしょうか？');
+    
+    if( result ) {
+    
+    
+        document.getElementById("flg_yes_no").value = "YES";    
+        alert("削除しました");
+    }
+    else {
+        document.getElementById("flg_yes_no").value = "NO";
+        alert("キャンセルしました");
+        
+    }
+})
+</script>
+                   
+                   
+                   
+                   
+ </html> 
+
+
+
+
+    {% endblock %}
+</body>

@@ -1,0 +1,92 @@
+﻿{% extends 'menu_header.html' %}
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html lang="ja">
+<head>
+    <title>社員マスタ</title>
+</head>
+<body>
+
+
+
+
+
+<td>{{ID}}</td>
+
+
+{% block body %}
+
+
+
+<body>
+
+    
+<form action="/m_syain_admin" method="POST">
+
+
+
+            <td>
+                <a class="btn-detail2" href="/m_syain_edit/{{ID}}/new/add" style="position: absolute; right: 20px; top: 125px">新規追加</a>
+            </td>
+
+
+
+    <table class="sk_h_l_readonly" border=1>
+        <tr>
+            <th width="100">社員番号</th>
+            <th width="550">氏名</th>
+            <th width="310">部署</th>
+            <th width="40"></th>
+            <th width="40"></th>
+        </tr>
+    </table>
+        
+    <table class="sk_t_l_readonly" border=1>
+    
+        {% for Empstr_Admin in Syainstr %}
+        <tr>        							
+            <td width="100"><center>{{ Empstr_Admin.M_Syain.id }}</center></td>
+            <td width="550">{{ Empstr_Admin.M_Syain.name }}</td>
+            <td width="310">{{ Empstr_Admin.M_Busyo.busyoname }}</td>
+            
+            </td>
+            <td>
+                <a class="btn-detail" href="/m_syain_edit/{{ID}}/{{ Empstr_Admin.M_Syain.id}}/edit" >編集</a></td>
+
+          <td>     <a class="btn-detail" name="btndlt" id="btndlt" href="/m_syain_edit/{{ID}}/{{ Empstr_Admin.M_Syain.id}}/del">削除</a>
+            </td>
+        </tr>
+        
+        
+        
+        {% endfor %}
+    </table>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <td><input type="text" name="cont_id" id="cont_id"   class="textarea_hidden" value={{ ID }}></td>
+    <input id="syainid"  name="syainid" class="textarea_hidden" value={{ID}}>
+</form>
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+</body>

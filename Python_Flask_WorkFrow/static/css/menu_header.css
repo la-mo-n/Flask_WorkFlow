@@ -1,0 +1,512 @@
+
+body {
+background-color: white;
+}
+
+
+
+
+
+
+
+.cp_navi {
+	background-color: #ffffff;
+	border: 1px solid #dedede;
+	border-radius: 4px;
+	box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+	color: #888888;
+	display: block;
+	margin: 1em 1%;
+	overflow: hidden;
+	width: 98%;
+}
+.cp_navi ul {
+	margin: 0;
+	padding: 0;
+}
+.cp_navi ul li {
+	display: inline-block;
+	list-style-type: none;
+	-webkit-transition: all 0.2s;
+	        transition: all 0.2s;
+}
+
+/*メニューの親階層設定*/
+.cp_navi > ul > li > a > .caret {
+	border-top: 4px solid #aaaaaa;
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
+	content: '';
+	display: inline-block;
+	height: 0;
+	width: 0;
+	vertical-align: middle;
+	-webkit-transition: color 0.1s linear;
+	        transition: color 0.1s linear;
+}
+.cp_navi > ul > li > a {
+	color: #aaaaaa;
+	display: block;
+	line-height: 56px;
+	padding: 0 10px;
+	text-decoration: none;
+}
+.cp_navi > ul > li:hover {
+	background-color: rgb(218, 60, 65);
+}
+.cp_navi > ul > li:hover > a {
+	color: rgb( 255, 255, 255 );
+}
+.cp_navi > ul > li:hover > a > .caret {
+	border-top-color: rgb( 255, 255, 255 );
+}
+
+/*子階層の設定*/
+.cp_navi > ul > li > div {
+	background-color: rgb(218, 60, 65);
+	border-top: 0;
+	border-radius: 0 0 4px 4px;
+	box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+	display: none;
+	margin: 0;
+	opacity: 0;
+	position: absolute;
+	width: 165px;
+	visibility: hidden;
+	-webkit-transiton: opacity 0.2s;
+	       transition: opacity 0.2s;
+}
+.cp_navi > ul > li:hover > div {
+	display: block;
+	opacity: 1;
+	visibility: visible;
+}
+.cp_navi > ul > li > div ul > li {
+	display: block;
+}
+.cp_navi > ul > li > div ul > li > a {
+	color: #ffffff;
+	display: block;
+	padding: 12px 24px;
+	text-decoration: none;
+}
+.cp_navi > ul > li > div ul > li:hover > a {
+	background-color: rgba( 255, 255, 255, 0.1);
+}
+
+
+.cp_navi li.right {
+	float: right;
+}
+
+
+.table_border {
+  width: 1000px;
+  color:#FFFFEE 	;
+  background-color:#222222;
+  border: 0px solid #222222;
+}
+
+.table_border_detail {
+  width: 1000px;
+  background-color: #WHITE;
+  color:#111111;
+  border: 1px solid #000000;
+}
+
+
+
+
+
+.btn-shinsei {
+  font-size:12px;
+  color: #fff;
+  background-color: #eb6100;
+  border-radius: 20px;
+  
+}
+.btn-shinsei:hover {
+  color: #fff;
+  background: #f56500;
+}
+
+
+
+.k_head_small {
+ width: 100px;
+  height: 20px;
+  color:#FFFFEE 	;
+  background-color:#222222;
+  border: 0px solid #222222;
+}
+
+
+
+.k_head_small_readonly {
+ width: 100px;
+  height: 20px;
+  color:#FFFFEE 	;
+  background-color:#000088;
+  border: 0px solid #222222;
+}
+
+
+
+
+.k_title_small {
+  width: 300px;
+  height: 25px;
+  background-color: #WHITE;
+  color:#111111;
+  border: 1px solid #000000;
+}
+
+
+
+
+
+
+
+
+
+
+.k_head {
+width: 780px;
+  height: 20px;
+  color:#FFFFEE;
+  background-color:#222222;
+  border: 0px solid #222222;
+}
+
+.k_title {
+width: 780px;
+  height: 25px;
+  background-color: #WHITE;
+  color:#111111;
+  border: 1px solid #000000;
+}
+
+
+
+.detail_head {
+  height: 20px;
+  color:#FFFFEE;
+  background-color:#222222;
+  border: 0px solid #222222;
+}
+
+
+
+
+.t_head {
+width: 1000px;
+  height: 20px;
+  color:#FFFFEE;
+  background-color:#222222;
+  border: 0px solid #222222;
+}
+
+
+/* 申請照会・申請許可入力 */
+
+.sk_h_l_readonly {
+  border-collapse: collapse;
+  height: 20px;
+  color:#FFFFEE 	;
+  background-color:#000088;
+  border: 1px solid #888888;
+}
+
+.sk_t_l_readonly {
+
+  height: 20px;
+  border-collapse: collapse;
+  background-color: #WHITE;
+  color:#111111;
+  border: 1px solid #888888;
+}
+
+
+.sk_h_l_readonly2 {
+width: 950px;
+  border-collapse: collapse;
+  height: 20px;
+  color:#FFFFEE 	;
+  background-color:#000088;
+  border: 1px solid #888888;
+}
+
+.sk_t_l_readonly2 {
+width: 950px;
+  height: 20px;
+  border-collapse: collapse;
+  background-color: #WHITE;
+  color:#111111;
+  border: 1px solid #888888;
+}
+
+
+
+.k_head_readonly2 {
+width: 780px;
+  height: 20px;
+  color:#FFFFEE;
+  background-color:#000088;
+  border: 0px solid #888888;
+}
+
+.k_title_readonly2 {
+width: 780px;
+  height: 25px;
+  background-color: #WHITE;
+  color:#111111;
+  border: 1px solid #888888;
+}
+
+
+
+
+
+
+.btn-detail {
+  display: inline-block;
+  padding: 0.3em 0.3em;  /* 上下、左右の余白を指定する */
+  text-decoration: none;
+  background: #668ad8;/*ボタン色*/
+  color: #FFF;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+}
+.btn-detail:active {
+  *ボタンを押したとき*/
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
+}
+
+
+.btn-detail2 {
+  display: inline-block;
+  padding: 0.3em 0.3em;  /* 上下、左右の余白を指定する */
+  text-decoration: none;
+  background: #228b22;/*ボタン色*/
+  color: #FFF;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+}
+.btn-detail2:active {
+  *ボタンを押したとき*/
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
+}
+
+
+
+
+
+
+.btn-detail2 {
+  display: inline-block;
+  padding: 0.3em 0.3em;  /* 上下、左右の余白を指定する */
+  text-decoration: none;
+  background: #005500;/*ボタン色*/
+  color: #FFF;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+}
+.btn-detail2:active {
+  /*ボタンを押したとき*/
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
+}
+
+
+
+
+.btn-del {
+  display: inline-block;
+  padding: 0.3em 0.3em;  /* 上下、左右の余白を指定する */
+  text-decoration: none;
+  background: #005500;/*ボタン色*/
+  color: #FFF;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+}
+.btn-del:active {
+  /*ボタンを押したとき*/
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
+}
+
+
+
+
+
+
+
+.btn-delete {
+  font-size:12px;
+  color: #fff;
+  background-color: #003300;
+  border-radius: 20px;
+  
+}
+.btn-delete:hover {
+  color: #fff;
+  background: #f56500;
+}
+
+
+
+  /*申請ルート*/
+.btn-add {
+  font-size:12px;
+  color: #333333 	;
+  background-color: ##FFFFEE;
+  border-radius: 20px;
+  
+}
+.btn-add:hover {
+  color: #fff;
+  background: #f56500;
+}
+
+
+
+
+.sk_delete_h {
+ width: 300px;
+  height: 20px;
+  color:#FFFFEE 	;
+  background-color:#222222;
+  border: 0px solid #222222;
+}
+
+.sk_delete {
+width: 300px;
+  height: 20px;
+  background-color: #WHITE;
+  color:#111111;
+  border: 1px solid #000000;
+}
+
+
+
+
+
+
+
+/* 申請許可入力 */
+
+
+
+/* 申請照会(詳細) */
+.btn--prt {
+  font-size:12px;
+  color: #fff;
+  background-color: #eb6100;
+  border-radius: 20px;
+  
+}
+.btn--prt:hover {
+  color: #fff;
+  background: #f56500;
+}
+
+
+
+  /*申請修正*/
+.btn-sub {
+  font-size:12px;
+  color: #333333 	;
+  background-color: ##FFFFEE;
+  border-radius: 20px;
+  
+}
+.btn-sub:hover {
+  color: #fff;
+  background: #f56500;
+}
+
+
+
+
+
+
+
+/* 申請許可入力(詳細) */
+
+.sk_detail_h_s_readonly {
+ width: 300px;
+  height: 20px;
+  color:#FFFFEE 	;
+  background-color:#000088;
+  border: 0px solid #222222;
+}
+
+.sk_detail_t_s_readonly {
+  width: 300px;
+  height: 25px;
+  background-color: #WHITE;
+  color:#111111;
+  border: 1px solid #000000;
+}
+
+.sk_detail_h_l_readonly {
+ width: 1000px;
+  height: 20px;
+  color:#FFFFEE 	;
+  background-color:#000088;
+  border: 0px solid #222222;
+}
+
+.sk_detail_t_l_readonly {
+  width: 1000px;
+  height: 25px;
+  background-color: #WHITE;
+  color:#111111;
+  border: 1px solid #000000;
+}
+
+.sk_detail_kyoka_h {
+ width: 300px;
+  height: 20px;
+  color:#FFFFEE 	;
+  background-color:#222222;
+  border: 0px solid #222222;
+}
+
+.sk_detail_kyoka {
+width: 300px;
+  height: 20px;
+  background-color: #WHITE;
+  color:#111111;
+  border: 1px solid #000000;
+}
+
+.sk_detail_reason_denied_h {
+width: 1000px;
+  height: 20px;
+  color:#FFFFEE;
+  background-color:#222222;
+  border: 0px solid #222222;
+}
+
+
+
+/*textarea_hidden項目*/
+.textarea_hidden{
+
+display:none;
+
+}
+
+
+
+
+
+
+

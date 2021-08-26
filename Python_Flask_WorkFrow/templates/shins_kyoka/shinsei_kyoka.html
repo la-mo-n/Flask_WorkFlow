@@ -1,0 +1,60 @@
+﻿{% extends 'menu_header.html' %}
+
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html lang="ja">
+<head>
+    <title>申請許可入力</title>
+</head>
+<body>
+
+
+
+
+{% block body %}
+
+
+
+    {% if shinseistr|length < 1 %}
+    <h4 style="text-align: center">社員からの申請はありません</h4>
+    {% else %}
+
+    <table class="sk_h_l_readonly" border=1>
+        <tr>
+            <th width="110">申請日</th>
+            <th width="200">社員名</th>
+            <th width="700">タイトル</th>
+            <th width="40"></th>
+        </tr>
+    </table>
+        
+        
+    <table class="sk_t_l_readonly" border=1>
+        {% for Shins in shinseistr %}
+        <tr>        							
+            <td width="110">{{ Shins.shinseid }}</td>
+            <td width="200">{{ Shins.shinsei_syainno}}</td>
+            <td width="700">{{ Shins.shinsei_title }}</td>
+            
+            <td>
+                <a class="btn-detail" href="shinsei_kyoka_detail?id={{ID}}&no={{Shins.shinsei_no}}" >詳細</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+       <td><textarea readonly id="cont_id" name="cont_id" class="textarea_hidden" >{{ID}}</textarea></td>
+
+ </html>     
+    
+    
+    {% endblock %}
+    
+    
+    
+    
+    
+</body>    
+    
+    
